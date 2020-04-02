@@ -5,12 +5,15 @@ using UnityEngine;
 public class BarracksButton : MonoBehaviour
 {
     [SerializeField] GameObject barracks;
+    [SerializeField] bool isMelee;
 
-    void AddMeleeUnit()
+    void AddUnit()
     {
         Barracks script = barracks.GetComponent<Barracks>();
-        int unit = script.GetUnitMeleeCount();
-        script.SetUnitMeleeCount(unit += 1);
-        print("succsess!");
+        if (isMelee)
+            script.AddUnitMeleeCount(1);
+        else if (!isMelee)
+            script.AddUnitRangedCount(1);
+        print("unit added");
     }
 }

@@ -1,45 +1,97 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Barracks : MonoBehaviour
 {
-    [SerializeField] int unit_melee_count, unit_range_count;
-    [SerializeField] float unit_spawn_time, unit_spawn_time_current;
-    [SerializeField] GameObject spawnPos;
+    [SerializeField] int unit_melee_count, unit_range_count, unit_melee_count_MAX, unit_range_count_MAX, melee_price, ranged_price;
+    [SerializeField] GameObject spawnPos, meleeButton, rangedButton;
     [SerializeField] List<GameObject> unitList;
+    [SerializeField] bool team1; //Set team
+    GameManager resources;
+
+    //UI
+    [SerializeField] Text meleeText, rangedText, meleeCount, rangedCount, meleePriceText, rangedPriceText;
 
     void Start()
     {
-        unit_spawn_time_current = unit_spawn_time;
-    }
+        resources = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+        if (team1)
+        {
+            Mob_Melee melee = unitList[0].GetComponent<Mob_Melee>();
+            melee.team1 = team1;
+        }
 
+        meleePriceText.text = melee_price.ToString();
+        rangedPriceText.text = ranged_price.ToString();
+    }
 
     void Update()
     {
-        unit_spawn_time_current -= Time.deltaTime;
-        if (unit_melee_count > 0 && unit_spawn_time_current <= 0)
+        if (unit_melee_count == unit_melee_count_MAX)
         {
-            for (int i = 0; i < unit_melee_count; i++)
-            {
-                Instantiate(unitList[0], spawnPos.transform.position, spawnPos.transform.rotation);
-                i++;
-                print(i);
-            }
+            Destroy(meleeButton);
+            meleeText.text = "Melee MAX";
+        }
 
-            unit_spawn_time_current = unit_spawn_time;
+        if (unit_range_count == unit_range_count_MAX)
+        {
+            Destroy(rangedButton);
+            rangedText.text = "Ranged MAX";
+        }
+
+        meleeCount.text = unit_melee_count.ToString();
+        rangedCount.text = unit_range_count.ToString();
+    }
+
+    public void SpawnUnits()
+    {
+        for (int i = 1; i <= unit_melee_count; i++)
+        {
+            if(i == 1)
+                Instantiate(unitList[0], spawnPos.transform.position, spawnPos.transform.rotation);
+            else
+                Instantiate(unitList[0], new Vector3(spawnPos.transform.position.x + i/2, spawnPos.transform.position.y, spawnPos.transform.position.z), spawnPos.transform.rotation);
+
+            i++;
+            print(i);
         }
     }
 
-    #region Melee unit get;set
+    #region Melee unit get;set;
     public int GetUnitMeleeCount()
     {
         return unit_melee_count;
     }
 
-    public void SetUnitMeleeCount(int number)
+    public void AddUnitMeleeCount(int number)
     {
-        unit_melee_count += number;
+        if (melee_price > resources.GetGold())
+            print("Not enough gold");
+        else
+        {
+            resources.RemoveGold(melee_price);
+            unit_melee_count += number;
+        }
+    }
+    #endregion
+
+    #region Ranged unit get;set;
+    public int GetUnitRangedCount()
+    {
+        return unit_range_count;
+    }
+
+    public void AddUnitRangedCount(int number)
+    {
+        if (ranged_price > resources.GetGold())
+            print("Not enough gold");
+        else
+        {
+            resources.RemoveGold(ranged_price);
+            unit_range_count += number;
+        }
     }
     #endregion
 }

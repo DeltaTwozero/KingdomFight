@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerControls : MonoBehaviour
 {
@@ -81,7 +82,7 @@ public class PlayerControls : MonoBehaviour
 
         teleportFadeBool = false; //setting bool to change alpha for teleport image
 
-        Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame
@@ -165,6 +166,11 @@ public class PlayerControls : MonoBehaviour
         {
             deathFadeFloat = 1f;
 
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            SceneManager.LoadScene(0);
         }
 
         //currentHP -= 0.1f;

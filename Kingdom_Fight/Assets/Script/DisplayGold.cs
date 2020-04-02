@@ -5,13 +5,13 @@ using UnityEngine.UI;
 
 public class DisplayGold : MonoBehaviour
 {
-    Resources resources;
+    GameManager resources;
     int gold_amount_local;
     [SerializeField] Text gold_amountTXT;
 
     void Start()
     {
-        resources = GameObject.FindGameObjectWithTag("GameManager").GetComponent<Resources>();
+        resources = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
     }
 
     void Update()

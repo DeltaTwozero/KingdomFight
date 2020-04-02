@@ -8,6 +8,9 @@ TagManager:
   - PathPoint
   - GameManager
   - Gold
+  - Player1MobPoint
+  - Castle
+  - Button
   layers:
   - Default
   - TransparentFX

@@ -65,19 +65,34 @@ public class CameraControls : MonoBehaviour
           RaycastHit rayHit;
           if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out rayHit))
           {
-              print(rayHit.collider.gameObject.name);
-
                 if (rayHit.collider.gameObject.GetComponent<BarracksButton>())
                 {
-                    rayHit.collider.gameObject.GetComponent<BarracksButton>().SendMessage("AddMeleeUnit");
+                    rayHit.collider.gameObject.GetComponent<BarracksButton>().SendMessage("AddUnit");
                 }
 
-                if (rayHit.collider.gameObject.GetComponent<GoldOre>())
+                if (rayHit.collider.gameObject.GetComponent<GoldOre>() && Vector3.Distance(transform.position, rayHit.collider.gameObject.transform.position) <= 2f)
                 {
                     rayHit.collider.gameObject.GetComponent<GoldOre>().SendMessage("GatherGold");
                 }
-                
             }
+        }
+
+        RaycastHit rayHitAlways;
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out rayHitAlways))
+        {
+            #region Outline
+            if (rayHitAlways.collider.gameObject.GetComponent<Outline>() && Vector3.Distance(transform.position, rayHitAlways.collider.gameObject.transform.position) > 2f && Vector3.Distance(transform.position, rayHitAlways.collider.gameObject.transform.position) < 5f)
+            {
+                rayHitAlways.collider.gameObject.GetComponent<Outline>().enabled = true;
+                rayHitAlways.collider.gameObject.GetComponent<Outline>().OutlineColor = Color.red;
+            }
+
+            if (rayHitAlways.collider.gameObject.GetComponent<Outline>() && Vector3.Distance(transform.position, rayHitAlways.collider.gameObject.transform.position) <= 2f)
+            {
+                rayHitAlways.collider.gameObject.GetComponent<Outline>().enabled = true;
+                rayHitAlways.collider.gameObject.GetComponent<Outline>().OutlineColor = Color.green;
+            }
+            #endregion
         }
 
         #region Leaning code

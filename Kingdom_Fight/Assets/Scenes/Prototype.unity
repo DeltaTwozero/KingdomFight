@@ -943,6 +943,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   goldMax: 0
   goldCurrent: 0
+  unit_spawn_time_default: 10
+  unit_spawn_time_current: 0
+  barracks1: {fileID: 2030023782}
 --- !u!4 &712341169
 Transform:
   m_ObjectHideFlags: 0
@@ -2219,3 +2222,15 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2030023782 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3262718901753181028, guid: 1d4197cf417fc924cba1a946b47365b7,
+    type: 3}
+  m_PrefabInstance: {fileID: 399437654}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7201f85d6e5b8964ba77243c9df80a5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
