@@ -7,11 +7,12 @@ public class DisplayGold : MonoBehaviour
 {
     GameManager resources;
     int gold_amount_local;
-    [SerializeField] Text gold_amountTXT;
+    [SerializeField] Text gold_amountTXT, gold_amount_MAX_TXT;
 
     void Start()
     {
         resources = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+        gold_amount_MAX_TXT.text = resources.GetGoldMAX().ToString();
     }
 
     void Update()

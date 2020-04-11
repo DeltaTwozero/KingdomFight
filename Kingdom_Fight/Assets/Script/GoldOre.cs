@@ -42,7 +42,6 @@ public class GoldOre : MonoBehaviour
     void GenerateGold()
     {
         gold_amount_local = Random.Range(2, 10);
-        //print(gold_amount_local);
     }
 
     IEnumerator Respawn(float respawnTimeLocal)

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class Mob_Melee : MonoBehaviour
 {
@@ -11,16 +12,25 @@ public class Mob_Melee : MonoBehaviour
 
     [Header("Movement variables")]
     [SerializeField] int currentPoint = 0;
-    [SerializeField] float speed, destroyTimer;
+    [SerializeField] float speed;
     public bool team1;
     [SerializeField] GameObject[] pathPoints;
 
-    [SerializeField] int damage = 10;
+    [SerializeField] int damage, hp;
+
+    //Audio
     [SerializeField] AudioSource source;
+    [SerializeField] AudioClip death_SFX;
+
+    [SerializeField] Armoury armoury;
+
+    //UI
+    [SerializeField] Text dmgTXT, hpTXT;
+
     void Start()
     {
         agent = this.GetComponent<NavMeshAgent>();
-        destroyTimer = 10f;
+        agent.speed = speed;
 
         //Creating a list of path points
         if (team1)
@@ -28,8 +38,14 @@ public class Mob_Melee : MonoBehaviour
             pathPoints = GameObject.FindGameObjectsWithTag("Player1MobPoint");
             pathPoints = pathPoints.OrderBy(point => Vector3.Distance(this.transform.position, point.transform.position)).ToArray();
         }
-            
 
+        armoury = GameObject.FindGameObjectWithTag("Armoury").GetComponent<Armoury>();
+        damage = armoury.GetMeleeDMG();
+        hp = armoury.GetMeleeHP();
+
+        //Setting UI
+        dmgTXT.text = damage.ToString();
+        hpTXT.text = hp.ToString();
 
         //GameObject dest1 = GameObject.Find("Destination1");
         //pathPoints.Add(dest1);
@@ -42,8 +58,6 @@ public class Mob_Melee : MonoBehaviour
 
     void Update()
     {
-        agent.speed = speed;
-        destroyTimer -= Time.deltaTime;
         MoveToPoint();
     }
 
@@ -53,6 +67,18 @@ public class Mob_Melee : MonoBehaviour
             currentPoint = 0;
 
         agent.destination = pathPoints[currentPoint].transform.position;
+    }
+
+    public void TakeDamage(int damage)
+    {
+        hp -= damage;
+        hpTXT.text = hp.ToString();
+        if (hp <= 0)
+        {
+            source.PlayOneShot(death_SFX);
+            agent.enabled = false;
+            Destroy(this.gameObject, death_SFX.length + .1f);
+        }
     }
 
     void OnTriggerEnter(Collider other)

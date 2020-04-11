@@ -40,9 +40,6 @@ public class Barracks : MonoBehaviour
             Destroy(rangedButton);
             rangedText.text = "Ranged MAX";
         }
-
-        meleeCount.text = unit_melee_count.ToString();
-        rangedCount.text = unit_range_count.ToString();
     }
 
     public void SpawnUnits()
@@ -54,7 +51,6 @@ public class Barracks : MonoBehaviour
             else
                 Instantiate(unitList[0], new Vector3(spawnPos.transform.position.x + i/2, spawnPos.transform.position.y, spawnPos.transform.position.z), spawnPos.transform.rotation);
 
-            i++;
             print(i);
         }
     }
@@ -73,6 +69,9 @@ public class Barracks : MonoBehaviour
         {
             resources.RemoveGold(melee_price);
             unit_melee_count += number;
+            melee_price += 10;
+            meleeCount.text = unit_melee_count.ToString();
+            meleePriceText.text = melee_price.ToString();
         }
     }
     #endregion
@@ -91,6 +90,9 @@ public class Barracks : MonoBehaviour
         {
             resources.RemoveGold(ranged_price);
             unit_range_count += number;
+            ranged_price += 10;
+            rangedCount.text = unit_range_count.ToString();
+            rangedPriceText.text = ranged_price.ToString();
         }
     }
     #endregion

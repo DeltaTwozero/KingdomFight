@@ -70,6 +70,11 @@ public class CameraControls : MonoBehaviour
                     rayHit.collider.gameObject.GetComponent<BarracksButton>().SendMessage("AddUnit");
                 }
 
+                if (rayHit.collider.gameObject.GetComponent<ArmouryButton>())
+                {
+                    rayHit.collider.gameObject.GetComponent<ArmouryButton>().SendMessage("Upgrade");
+                }
+
                 if (rayHit.collider.gameObject.GetComponent<GoldOre>() && Vector3.Distance(transform.position, rayHit.collider.gameObject.transform.position) <= 2f)
                 {
                     rayHit.collider.gameObject.GetComponent<GoldOre>().SendMessage("GatherGold");

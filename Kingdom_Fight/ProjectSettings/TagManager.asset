@@ -11,6 +11,7 @@ TagManager:
   - Player1MobPoint
   - Castle
   - Button
+  - Armoury
   layers:
   - Default
   - TransparentFX

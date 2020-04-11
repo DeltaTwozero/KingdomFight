@@ -45,6 +45,9 @@ public class PlayerControls : MonoBehaviour
     float teleportFadeFloat, deathFadeFloat;
     public bool teleportFadeBool;
 
+    //Pause UI
+    [SerializeField] GameObject gameCanvas;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -170,7 +173,11 @@ public class PlayerControls : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            SceneManager.LoadScene(0);
+            
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            Time.timeScale = 0;
+            gameCanvas.SetActive(true);
         }
 
         //currentHP -= 0.1f;
