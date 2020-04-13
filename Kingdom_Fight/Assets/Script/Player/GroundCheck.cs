@@ -8,7 +8,7 @@ public class GroundCheck : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Floor")
+        if (other.gameObject.tag == "Ground")
         {
             isGrounded = true;
         }
@@ -16,7 +16,7 @@ public class GroundCheck : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.tag == "Floor")
+        if (other.gameObject.tag == "Ground")
         {
             isGrounded = false;
         }

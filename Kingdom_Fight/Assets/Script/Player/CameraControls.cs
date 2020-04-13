@@ -79,6 +79,16 @@ public class CameraControls : MonoBehaviour
                 {
                     rayHit.collider.gameObject.GetComponent<GoldOre>().SendMessage("GatherGold");
                 }
+
+                if (rayHit.collider.gameObject.GetComponent<UnlockResource>() && Vector3.Distance(transform.position, rayHit.collider.gameObject.transform.position) <= 2f)
+                {
+                    rayHit.collider.gameObject.GetComponent<UnlockResource>().SendMessage("UnlockRes");
+                }
+
+                if (rayHit.collider.gameObject.GetComponent<TowerButton>() && Vector3.Distance(transform.position, rayHit.collider.gameObject.transform.position) <= 2f)
+                {
+                    rayHit.collider.gameObject.GetComponent<TowerButton>().SendMessage("UseTower");
+                }
             }
         }
 

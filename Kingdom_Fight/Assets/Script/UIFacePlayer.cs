@@ -4,7 +4,7 @@ public class UIFacePlayer : MonoBehaviour
 {
     Transform playerCamera;
 
-    void Start()
+    void Awake()
     {
         playerCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Transform>();
     }

@@ -109,7 +109,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gold_amount_local: 0
-  respawnTime: 10
+  respawnTime: 20
   audioClips:
   - {fileID: 8300000, guid: 2b3d1c3336651b74e8dafbb6ea6cda1e, type: 3}
   - {fileID: 8300000, guid: d33a6b595ad078d4ca61281539213817, type: 3}

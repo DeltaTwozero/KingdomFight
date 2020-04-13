@@ -17,11 +17,6 @@ public class Barracks : MonoBehaviour
     void Start()
     {
         resources = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
-        if (team1)
-        {
-            Mob_Melee melee = unitList[0].GetComponent<Mob_Melee>();
-            melee.team1 = team1;
-        }
 
         meleePriceText.text = melee_price.ToString();
         rangedPriceText.text = ranged_price.ToString();
@@ -46,10 +41,24 @@ public class Barracks : MonoBehaviour
     {
         for (int i = 1; i <= unit_melee_count; i++)
         {
-            if(i == 1)
-                Instantiate(unitList[0], spawnPos.transform.position, spawnPos.transform.rotation);
+            if (i == 1)
+            {
+                if (team1)
+                {
+                    Mob_Melee melee = unitList[0].GetComponent<Mob_Melee>();
+                    melee.team1 = team1;
+                    Instantiate(unitList[0], spawnPos.transform.position, spawnPos.transform.rotation);
+                }
+            }
             else
-                Instantiate(unitList[0], new Vector3(spawnPos.transform.position.x + i/2, spawnPos.transform.position.y, spawnPos.transform.position.z), spawnPos.transform.rotation);
+            {
+                if (team1)
+                {
+                    Mob_Melee melee = unitList[0].GetComponent<Mob_Melee>();
+                    melee.team1 = team1;
+                    Instantiate(unitList[0], new Vector3(spawnPos.transform.position.x + i, spawnPos.transform.position.y, spawnPos.transform.position.z), spawnPos.transform.rotation);
+                }
+            }
 
             print(i);
         }

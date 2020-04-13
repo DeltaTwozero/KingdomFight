@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] int goldMax, goldCurrent;
     [SerializeField] float unit_spawn_time_default, unit_spawn_time_current;
     [SerializeField] Barracks barracks1, barracks2;
+    [SerializeField] EnemyManager enemyManager;
 
     void Start()
     {
@@ -22,6 +23,7 @@ public class GameManager : MonoBehaviour
         if (unit_spawn_time_current <= 0)
         {
             barracks1.SpawnUnits();
+            enemyManager.SpawnUnits();
 
             unit_spawn_time_current = unit_spawn_time_default;
         }

@@ -15,14 +15,16 @@ public class Mob_Melee : MonoBehaviour
     [SerializeField] float speed;
     public bool team1;
     [SerializeField] GameObject[] pathPoints;
+    [SerializeField] TargetLogic targetLogic;
 
-    [SerializeField] int damage, hp;
+    [SerializeField] float damage, hp, despawnTimer;
 
     //Audio
     [SerializeField] AudioSource source;
     [SerializeField] AudioClip death_SFX;
 
     [SerializeField] Armoury armoury;
+    [SerializeField] EnemyManager enemyManager;
 
     //UI
     [SerializeField] Text dmgTXT, hpTXT;
@@ -32,44 +34,54 @@ public class Mob_Melee : MonoBehaviour
         agent = this.GetComponent<NavMeshAgent>();
         agent.speed = speed;
 
-        //Creating a list of path points
         if (team1)
         {
+            //Creating a list of path points
             pathPoints = GameObject.FindGameObjectsWithTag("Player1MobPoint");
             pathPoints = pathPoints.OrderBy(point => Vector3.Distance(this.transform.position, point.transform.position)).ToArray();
-        }
 
-        armoury = GameObject.FindGameObjectWithTag("Armoury").GetComponent<Armoury>();
-        damage = armoury.GetMeleeDMG();
-        hp = armoury.GetMeleeHP();
+            //Set Values
+            armoury = GameObject.FindGameObjectWithTag("Armoury").GetComponent<Armoury>();
+            damage = armoury.GetMeleeDMG();
+            hp = armoury.GetMeleeHP();
+            targetLogic.SetDMG(damage);
+            targetLogic.SetTeam(team1);
+        }
+        else
+        {
+            pathPoints = GameObject.FindGameObjectsWithTag("Castle");
+            pathPoints = pathPoints.OrderBy(point => Vector3.Distance(this.transform.position, point.transform.position)).ToArray();
+            currentPoint = 1;
+            enemyManager = GameObject.FindGameObjectWithTag("EnemyManager").GetComponent<EnemyManager>();
+            damage = enemyManager.GetMeleeDamage();
+            hp = enemyManager.GetMeleeHP();
+            targetLogic.SetDMG(damage);
+        }
 
         //Setting UI
         dmgTXT.text = damage.ToString();
         hpTXT.text = hp.ToString();
-
-        //GameObject dest1 = GameObject.Find("Destination1");
-        //pathPoints.Add(dest1);
-        //GameObject dest2 = GameObject.Find("DestinationFinal");
-        //pathPoints.Add(dest2);
-
-        //pathPoints.Add(GameObject.FindGameObjectWithTag("PathPoint"));
     }
 
 
     void Update()
     {
         MoveToPoint();
+
+        despawnTimer -= Time.deltaTime;
+        if (despawnTimer < 0)
+            Destroy(this.gameObject);
     }
 
     void MoveToPoint()
     {
-        if (currentPoint >= pathPoints.Length)
+        if (currentPoint > pathPoints.Length)
             currentPoint = 0;
 
         agent.destination = pathPoints[currentPoint].transform.position;
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         hp -= damage;
         hpTXT.text = hp.ToString();
@@ -77,7 +89,12 @@ public class Mob_Melee : MonoBehaviour
         {
             source.PlayOneShot(death_SFX);
             agent.enabled = false;
-            Destroy(this.gameObject, death_SFX.length + .1f);
+            Rigidbody rd = this.GetComponent<Rigidbody>();
+            rd.AddForce(0, 500, 0);
+            //CapsuleCollider collider = this.GetComponent<CapsuleCollider>();
+            //collider.enabled = false;
+            targetLogic.enabled = false;
+            Destroy(this.gameObject, death_SFX.length);
         }
     }
 
@@ -99,5 +116,10 @@ public class Mob_Melee : MonoBehaviour
             collision.gameObject.GetComponent<Castle>().DamageCastle(damage);
             Destroy(this.gameObject);
         }
+
+        //if (collision.gameObject.tag == "Mob" && team1 != collision.gameObject.GetComponent<Mob_Melee>().team1)
+        //{
+        //    collision.gameObject.GetComponent<Mob_Melee>().TakeDamage(damage);
+        //}
     }
 }

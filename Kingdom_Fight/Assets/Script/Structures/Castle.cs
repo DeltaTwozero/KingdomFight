@@ -5,13 +5,13 @@ using UnityEngine.UI;
 
 public class Castle : MonoBehaviour
 {
-    [SerializeField] int healthMax, healthCurrent;
+    [SerializeField] float healthMax, healthCurrent;
 
     //UI
     [SerializeField] Text healthCurrentTXT, respawnTimeCurrentTXT;
 
-    AudioSource audioSource;
-    [SerializeField] AudioClip hurt;
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioClip hurt, death_SFX;
 
     GameManager gameManager;
 
@@ -21,13 +21,12 @@ public class Castle : MonoBehaviour
             healthMax = 100;
         healthCurrent = healthMax;
 
-        audioSource = this.GetComponent<AudioSource>();
+        healthCurrentTXT.text = healthCurrent.ToString();
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
     }
 
     void Update()
     {
-        healthCurrentTXT.text = healthCurrent.ToString();
         if (healthCurrent <= 0)
         {
             transform.Translate(Vector3.down * Time.deltaTime);
@@ -36,13 +35,24 @@ public class Castle : MonoBehaviour
         respawnTimeCurrentTXT.text = gameManager.GetRespawnTime().ToString("F2");
     }
 
-    public void DamageCastle(int damage)
+    public void DamageCastle(float damage)
     {
         healthCurrent -= damage;
-        audioSource.PlayOneShot(hurt);
+
+        if (healthCurrent <= 0)
+        {
+            audioSource.PlayOneShot(death_SFX);
+            healthCurrentTXT.text = healthCurrent.ToString();
+        }
+        else
+        {
+            audioSource.PlayOneShot(hurt);
+            healthCurrentTXT.text = healthCurrent.ToString();
+        }
+        
     }
 
-    public int GetCastleHealth()
+    public float GetCastleHealth()
     {
         return healthCurrent;
     }

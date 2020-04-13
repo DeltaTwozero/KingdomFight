@@ -12,6 +12,9 @@ TagManager:
   - Castle
   - Button
   - Armoury
+  - EnemyManager
+  - Ground
+  - Tower
   layers:
   - Default
   - TransparentFX
