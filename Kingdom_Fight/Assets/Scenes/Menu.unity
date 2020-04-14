@@ -294,7 +294,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 63.7, y: -81}
+  m_AnchoredPosition: {x: 63.700012, y: -468.1}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &181075745
@@ -708,7 +708,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: -155.3}
+  m_AnchoredPosition: {x: 0, y: -200}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &646603289
@@ -744,11 +744,15 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'RESOURCES
 
-    Only gold. Gathered from gold viens.
+    Gold. Gathered from gold viens.
+
+    Extra viens are unlockable.
 
 
-    LMB to collect
-    gold. Spent on units/upgrades.'
+    LMB
+    to collect gold.
+
+    Gold is spent on units/upgrades.'
 --- !u!222 &646603290
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -919,7 +923,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 162.2, y: -63.9}
+  m_AnchoredPosition: {x: 162.20001, y: -451}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &755123083
@@ -1125,7 +1129,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 109.400024, y: -47.94}
+  m_AnchoredPosition: {x: 109.400024, y: -435.04}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1090560247
@@ -1202,7 +1206,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 162.2, y: -115}
+  m_AnchoredPosition: {x: 162.20001, y: -502.1}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1144084862
@@ -1281,7 +1285,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -750, y: -375}
+  m_AnchoredPosition: {x: 837, y: -425}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1163881169
@@ -1496,7 +1500,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 80, y: 10}
+  m_AnchoredPosition: {x: 80, y: -377.1}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1297069864
@@ -1691,6 +1695,7 @@ GameObject:
   - component: {fileID: 1534164176}
   - component: {fileID: 1534164175}
   - component: {fileID: 1534164178}
+  - component: {fileID: 1534164179}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1859,6 +1864,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1534164179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1534164174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bfb49c940abf7a4489af7796ebeab33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1584092467
 GameObject:
   m_ObjectHideFlags: 0
@@ -1893,7 +1910,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 153.4, y: -28}
+  m_AnchoredPosition: {x: 153.4, y: -415.1}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1584092469
@@ -2240,7 +2257,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 94.5, y: -100.94}
+  m_AnchoredPosition: {x: 94.5, y: -488.04}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1963426445
@@ -2317,7 +2334,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 162.2, y: -11.1}
+  m_AnchoredPosition: {x: 162.20001, y: -398.2}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2056526897
@@ -2430,25 +2447,27 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'BUILDINGS
 
-    Armory - not working
+    Armory - Unit upgrades
 
 
     Barracks - Unit spawner. Press
     buttons to
 
-    hire more unirts (ranged not working)
+    hire more units.
 
 
-    Castle - displays
-    current gold and health.
+    Castle - displays current gold, health
 
-    Destroying either castle results in Game Over.
+    and
+    wave spawn time.
+
+    Destroying either Castle results in Game Over.
 
 
     Tower
-    - Not working
+    - Press button to activate defense system.
 
-'
+    Cooldown: 30 seconds.'
 --- !u!222 &2063605788
 CanvasRenderer:
   m_ObjectHideFlags: 0

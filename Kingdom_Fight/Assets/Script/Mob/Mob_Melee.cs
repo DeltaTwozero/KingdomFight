@@ -7,8 +7,8 @@ using UnityEngine.UI;
 
 public class Mob_Melee : MonoBehaviour
 {
-    NavMeshAgent agent;
     //NavMesh navMesh;
+    NavMeshAgent agent;
 
     [Header("Movement variables")]
     [SerializeField] int currentPoint = 0;
@@ -66,19 +66,19 @@ public class Mob_Melee : MonoBehaviour
 
     void Update()
     {
-        MoveToPoint();
-
         despawnTimer -= Time.deltaTime;
         if (despawnTimer < 0)
             Destroy(this.gameObject);
+
+        MoveToPoint();
     }
 
     void MoveToPoint()
     {
         if (currentPoint > pathPoints.Length)
-            currentPoint = 0;
+            currentPoint = 1;
 
-        agent.destination = pathPoints[currentPoint].transform.position;
+        agent.destination = pathPoints[1].transform.position;
     }
 
     public void TakeDamage(float damage)
@@ -87,13 +87,13 @@ public class Mob_Melee : MonoBehaviour
         hpTXT.text = hp.ToString();
         if (hp <= 0)
         {
+            targetLogic.enabled = false;
             source.PlayOneShot(death_SFX);
             agent.enabled = false;
             Rigidbody rd = this.GetComponent<Rigidbody>();
-            rd.AddForce(0, 500, 0);
-            //CapsuleCollider collider = this.GetComponent<CapsuleCollider>();
-            //collider.enabled = false;
-            targetLogic.enabled = false;
+            rd.isKinematic = false;
+            rd.useGravity = true;
+            rd.AddForce(0, 250, 0);
             Destroy(this.gameObject, death_SFX.length);
         }
     }
@@ -113,13 +113,8 @@ public class Mob_Melee : MonoBehaviour
     {
         if (collision.gameObject.tag == "Castle")
         {
-            collision.gameObject.GetComponent<Castle>().DamageCastle(damage);
             Destroy(this.gameObject);
+            collision.gameObject.GetComponent<Castle>().DamageCastle(damage);
         }
-
-        //if (collision.gameObject.tag == "Mob" && team1 != collision.gameObject.GetComponent<Mob_Melee>().team1)
-        //{
-        //    collision.gameObject.GetComponent<Mob_Melee>().TakeDamage(damage);
-        //}
     }
 }

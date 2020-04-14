@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4802798182236971241}
   m_Layer: 0
-  m_Name: spawnPos
+  m_Name: spawnPos1
   m_TagString: Untagged
   m_Icon: {fileID: 419385456094870383, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -63,7 +63,7 @@ Transform:
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children: []
   m_Father: {fileID: 4179456421979096312}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &2013579135201991478
 MeshFilter:
@@ -613,7 +613,7 @@ RectTransform:
   - {fileID: 4867026015059750906}
   - {fileID: 3434250276616080040}
   m_Father: {fileID: 4179456421979096312}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -949,6 +949,7 @@ Transform:
   - {fileID: 982985689986610987}
   - {fileID: 1356754619542656426}
   - {fileID: 4802798182236971241}
+  - {fileID: 5341623228762249602}
   - {fileID: 1744287843768853734}
   - {fileID: 8855930854001503510}
   - {fileID: 5388516684354312931}
@@ -1033,11 +1034,13 @@ MonoBehaviour:
   unit_range_count_MAX: 4
   melee_price: 30
   ranged_price: 40
-  spawnPos: {fileID: 716958562747147557}
+  spawnPos1: {fileID: 716958562747147557}
+  spawnPos2: {fileID: 8490255001980978401}
   meleeButton: {fileID: 859685346264232733}
   rangedButton: {fileID: 7213248813828747118}
   unitList:
   - {fileID: 1127866501501562430, guid: 16001d679df32ef46b9e057808ff3fdb, type: 3}
+  - {fileID: 6505245395865106894, guid: 0c850665319bc9341981c6cb3503991a, type: 3}
   team1: 0
   meleeText: {fileID: 6675042340498172629}
   rangedText: {fileID: 6280659623169126172}
@@ -1078,7 +1081,7 @@ Transform:
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children: []
   m_Father: {fileID: 4179456421979096312}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &6113790687061702550
 MeshFilter:
@@ -1343,6 +1346,36 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &8490255001980978401
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5341623228762249602}
+  m_Layer: 0
+  m_Name: spawnPos2
+  m_TagString: Untagged
+  m_Icon: {fileID: 419385456094870383, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5341623228762249602
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8490255001980978401}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4179456421979096312}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8841514135699480791
 GameObject:
   m_ObjectHideFlags: 0
